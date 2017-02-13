@@ -6,6 +6,7 @@ function Stopwatch() {
   function update() {
     time += timepassed();
     var newtime = formattime(time)
+    console.log(newtime);
   }
 
   function timepassed() {
@@ -15,11 +16,25 @@ function Stopwatch() {
     return timepassed; 
   };
 
-  function formattime(timems) {
-    var time = new Date(timems);
-    var minutes = time.getMinutes();
-    var seconds = time.getSeconds();
-    var milliseconds = time.getMilliseconds();
+  function formattime(timeInMilliseconds) {
+    var time = new Date(timeInMilliseconds);
+    var minutes = time.getMinutes().toString();
+    var seconds = time.getSeconds().toString();
+    var milliseconds = time.getMilliseconds().toString();
+
+    if (minutes.length < 2) {
+      minutes = '0' + minutes;
+    }
+
+    if (seconds.length < 2) {
+      seconds = '0' + seconds;
+    }
+
+    while (milliseconds.length < 3) {
+      milliseconds = '0' + milliseconds;
+    }
+
+    return minutes + ':' + seconds + ':' + milliseconds;
   };
 
   this.isOn = false;
