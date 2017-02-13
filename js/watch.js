@@ -3,13 +3,21 @@ function Stopwatch() {
   var interval;
   var now;
   
-  function update() {};
-  function timepassed() {};
+  function update() {
+    time += timepassed();
+  }
+
+  function timepassed() {
+    var pass = Date.now();
+    var timepassed = now - pass;
+    now = pass;
+    return timepassed; 
+  };
   function timems() {};
 
   this.isOn = false;
 
-  this.start = function () {
+  this.start = function() {
     if (!this.isOn) {
       interval = setInterval(update, 10);
       now = Date.now();
@@ -17,14 +25,14 @@ function Stopwatch() {
     }
   };
 
-  this.stop = function () {
+  this.stop = function() {
     if (this.isOn) {
       clearInterval(interval);
       interval = null;
       this.isOn = false;
     }
   };
-  this.reset = function () {
+  this.reset = function() {
     time = 0;
   };
 }
