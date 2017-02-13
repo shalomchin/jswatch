@@ -1,12 +1,15 @@
-function Stopwatch() {
+function Stopwatch(elem) {
 	var time = 0;
   var interval;
   var offset;
   
   function update() {
-    time += timepassed();
-    var newtime = formattime(time)
-    console.log(newtime);
+    if (this.isOn) {
+      time += timepassed();
+    }
+    var newtime = formattime(time);
+    elem.textContent = newtime;
+    // console.log(newtime);
   }
 
   function timepassed() {
@@ -41,7 +44,7 @@ function Stopwatch() {
 
   this.start = function() {
     if (!this.isOn) {
-      interval = setInterval(update, 10);
+      interval = setInterval(update.bind(this), 10);
       offset = Date.now();
       this.isOn = true;
     }
@@ -56,6 +59,7 @@ function Stopwatch() {
   };
   this.reset = function() {
     time = 0;
+    update();
   };
 }
 
