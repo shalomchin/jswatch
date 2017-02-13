@@ -13,9 +13,19 @@ function Stopwatch() {
     if (!this.isOn) {
       interval = setInterval(update, 10);
       now = Date.now();
+      this.isOn = true;
     }
   };
-  this.stop = function () {};
-  this.reset = function () {};
+
+  this.stop = function () {
+    if (this.isOn) {
+      clearInterval(interval);
+      interval = null;
+      this.isOn = false;
+    }
+  };
+  this.reset = function () {
+    time = 0;
+  };
 }
 
