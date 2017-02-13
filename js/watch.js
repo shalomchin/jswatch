@@ -1,18 +1,20 @@
 function Stopwatch() {
 	var time = 0;
   var interval;
-  var now;
+  var offset;
   
   function update() {
     time += timepassed();
+    console.log(time);
   }
 
   function timepassed() {
-    var pass = Date.now();
-    var timepassed = now - pass;
-    now = pass;
+    var now = Date.now();
+    var timepassed = now - offset;
+    offset = now;
     return timepassed; 
   };
+
   function timems() {};
 
   this.isOn = false;
@@ -20,7 +22,7 @@ function Stopwatch() {
   this.start = function() {
     if (!this.isOn) {
       interval = setInterval(update, 10);
-      now = Date.now();
+      offset = Date.now();
       this.isOn = true;
     }
   };
