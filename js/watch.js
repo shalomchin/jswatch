@@ -8,7 +8,13 @@ function Stopwatch() {
   function timems() {};
 
   this.isOn = false;
-  this.start = function () {};
+
+  this.start = function () {
+    if (!this.isOn) {
+      interval = setInterval(update, 10);
+      now = Date.now();
+    }
+  };
   this.stop = function () {};
   this.reset = function () {};
 }
