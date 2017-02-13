@@ -5,7 +5,7 @@ function Stopwatch() {
   
   function update() {
     time += timepassed();
-    console.log(time);
+    var newtime = formattime(time)
   }
 
   function timepassed() {
@@ -15,7 +15,12 @@ function Stopwatch() {
     return timepassed; 
   };
 
-  function timems() {};
+  function formattime(timems) {
+    var time = new Date(timems);
+    var minutes = time.getMinutes();
+    var seconds = time.getSeconds();
+    var milliseconds = time.getMilliseconds();
+  };
 
   this.isOn = false;
 
