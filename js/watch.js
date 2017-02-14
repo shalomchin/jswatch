@@ -9,7 +9,7 @@ function Stopwatch(elem) {
     }
     var newtime = formattime(time);
     elem.textContent = newtime;
-    // console.log(newtime);
+    // figure out how to replace elam
   }
 
   function timepassed() {
@@ -19,8 +19,9 @@ function Stopwatch(elem) {
     return timepassed; 
   };
 
-  function formattime(timeInMilliseconds) {
-    var time = new Date(timeInMilliseconds);
+  function formattime(milliseconds) {
+    var time = new Date(milliseconds);
+    //TODO: figure out how to replace new
     var minutes = time.getMinutes().toString();
     var seconds = time.getSeconds().toString();
     var milliseconds = time.getMilliseconds().toString();
@@ -37,13 +38,14 @@ function Stopwatch(elem) {
       milliseconds = '0' + milliseconds;
     }
 
-    return minutes + ':' + seconds + ':' + milliseconds;
+    return minutes + ' : ' + seconds + ' : ' + milliseconds;
   };
 
   this.isOn = false;
 
   this.start = function() {
-    if (!this.isOn) {
+    if (!this.isOn) { 
+      //TODO: this isOn needs work
       interval = setInterval(update.bind(this), 10);
       offset = Date.now();
       this.isOn = true;
@@ -53,7 +55,7 @@ function Stopwatch(elem) {
   this.stop = function() {
     if (this.isOn) {
       clearInterval(interval);
-      interval = null;
+      // interval = null;
       this.isOn = false;
     }
   };
